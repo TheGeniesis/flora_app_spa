@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from 'routing/AppRoute.enum';
@@ -14,33 +15,18 @@ export const Home = () => {
 
   return (
     <>
-      <h2>Home</h2>
-      <p>
-        {formatMessage({ id: AppMessages['home.helloWorld'] })}
-        <span style={{ margin: '0 1rem' }}>&#x2190;</span>
-        This text is translated using{' '}
-        <a href="https://github.com/formatjs/react-intl/blob/master/docs/API.md#formatmessage">
-          <code>formatMessage</code>
-        </a>{' '}
-        function from <a href="https://github.com/formatjs/react-intl">react-intl</a>. Click{' '}
-        <button
-          style={{ fontSize: 'inherit' }}
-          onClick={() => setLocale(locale === AppLocale.pl ? AppLocale.en : AppLocale.pl)}
-        >
-          here
-        </button>{' '}
-        to change language.
-      </p>
-      <p>This is a starter project for TSH React application. Click on navigation links above to learn more.</p>
-      <hr />
-      <LocationInfo />
-      <hr />
-      Current logged in user: {user?.username}{' '}
-      {user?.username && (
-        <>
-          Click <Link to={AppRoute.logout}>here</Link> to log out
-        </>
-      )}
+      <h1>List of devices</h1>
+      <section>
+        <section>
+          <div>ID</div>
+          <div>name</div>
+          <div>Edit section</div>
+        </section>
+        <section>
+          <div>data</div>
+        </section>
+      </section>
+      <Button className="btn btn-sucess">Add new device</Button>
     </>
   );
 };

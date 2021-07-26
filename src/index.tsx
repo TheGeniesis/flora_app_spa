@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/browser';
 
-import 'assets/styles/main.css';
+import 'assets/styles/main.scss';
 import { AppProviders } from 'providers/AppProviders';
 import { mockServer } from 'api/mocks/mock-server';
 
