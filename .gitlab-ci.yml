@@ -1,0 +1,22 @@
+default:
+  image: node:14.15.5-alpine3.10
+
+stages:
+  - build
+  - test
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - node_modules
+
+spa_test:
+  stage: test
+  script:
+    - cp .env.dist .env
+    - npm install
+    - npm run lint
+    - npm run coverage
