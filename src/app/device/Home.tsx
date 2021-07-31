@@ -1,8 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
+import { Link } from 'react-router-dom';
 
+import { AppRoute } from 'routing/AppRoute.enum';
 import { useAuthState } from 'hooks/useAuthState/useAuthState';
-
 export const Home = () => {
   const { user } = useAuthState();
 
@@ -28,7 +29,9 @@ export const Home = () => {
           </tr>
         </tbody>
       </Table>
-      <Button variant="primary">Add new device</Button>
+      <Link className="btn btn-primary" to={AppRoute.createDevice}>
+        Add new device
+      </Link>
     </>
   );
 };
