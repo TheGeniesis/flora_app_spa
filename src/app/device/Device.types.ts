@@ -1,5 +1,5 @@
-import { LoginPayload } from 'api/actions/auth/authActions.types';
+import { FetchDevicesResponse } from "api/actions/device/deviceActions.types";
 
-export type LoginProps = {
-  onSubmit(payload: LoginPayload): Promise<boolean>;
+export type DevicesProps = {
+  getDevices(): Promise<FetchDevicesResponse>;
 };

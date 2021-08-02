@@ -43,6 +43,30 @@ export const mockServer = () => {
 
         return new MockResponse(403, {});
       });
+      this.get('/api/devices', (schema, request) => {
+        if (request.requestHeaders?.authorization === 'Bearer MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3') {
+          return new MockResponse(
+            200,
+            {},
+            JSON.stringify([
+            {
+              id: 'Mike',
+              name: 'Tyson',
+            },
+            {
+              id: 'Mike2',
+              name: 'Tyson2',
+            },
+            {
+              id: 'Mike3',
+              name: 'Tyson3',
+            },
+          ]),
+          );
+        }
+
+        return new MockResponse(403, {});
+      });
 
       this.passthrough(`${process.env.REACT_APP_API_URL}/**`);
     },
