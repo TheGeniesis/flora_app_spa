@@ -1,4 +1,4 @@
-import { FetchDeviceResponse } from 'api/actions/device/deviceActions.types';
+import { FetchDeviceResponse, FetchDevicesResponse } from 'api/actions/device/deviceActions.types';
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
@@ -6,28 +6,18 @@ import { Link } from 'react-router-dom';
 
 import { AppRoute } from 'routing/AppRoute.enum';
 import { DevicesProps } from './Device.types';
+import { DeviceRow } from './DeviceRow';
 export const Home = ({ getDevices }: DevicesProps) => {
 
-  const [devices, setDevices] = useState({});
+  const [devices, setDevices] = useState<FetchDevicesResponse>();
 
   useEffect(() => {
     async function fetchMyAPI() {
 
       const result = await getDevices();
 
-      const devices = result.map((data: FetchDeviceResponse) =>
-        <tr>
-          {/* <tr key={data.id}> */}
-          <td>{data.id}</td>
-          <td>{data.name}</td>
-          <td>
-            <Button id={`edit_button_device_id_${data.id}`} variant="warning">Edit</Button>
-            <Button id={`delete_button_device_id_${data.id}`} variant="danger">Delete</Button>
-          </td>
-        </tr>
-      )
 
-      setDevices(devices)
+      setDevices(result)
     }
 
     fetchMyAPI()
@@ -45,7 +35,9 @@ export const Home = ({ getDevices }: DevicesProps) => {
           </tr>
         </thead>
         <tbody>
-          {/* {devices} */}
+          {devices && devices.map((data: FetchDeviceResponse) =>
+            <DeviceRow key={data.id} {...data} />
+          )}
         </tbody>
       </Table>
       <Link className="btn btn-primary" to={AppRoute.createDevice}>
