@@ -16,12 +16,13 @@ export const Home = ({ getDevices }: DevicesProps) => {
 
       const result = await getDevices();
 
-
-      setDevices(result)
+      if (result) {
+        setDevices(result);
+      }
     }
 
-    fetchMyAPI()
-  })
+    fetchMyAPI();
+  }, [getDevices]);
 
   return (
     <>
@@ -35,7 +36,7 @@ export const Home = ({ getDevices }: DevicesProps) => {
           </tr>
         </thead>
         <tbody>
-          {devices && devices.map((data: FetchDeviceResponse) =>
+          {devices?.length && devices.map((data: FetchDeviceResponse) =>
             <DeviceRow key={data.id} {...data} />
           )}
         </tbody>
