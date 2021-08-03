@@ -1,10 +1,28 @@
+import { FetchDeviceResponse, FetchDevicesResponse } from 'api/actions/device/deviceActions.types';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
+import { Link } from 'react-router-dom';
 
-import { useAuthState } from 'hooks/useAuthState/useAuthState';
+import { AppRoute } from 'routing/AppRoute.enum';
+import { DevicesProps } from './Device.types';
+import { DeviceRow } from './DeviceRow';
+export const Home = ({ getDevices }: DevicesProps) => {
 
-export const Home = () => {
-  const { user } = useAuthState();
+  const [devices, setDevices] = useState<FetchDevicesResponse>();
+
+  useEffect(() => {
+    async function fetchMyAPI() {
+
+      const result = await getDevices();
+
+      if (result) {
+        setDevices(result);
+      }
+    }
+
+    fetchMyAPI();
+  }, [getDevices]);
 
   return (
     <>
@@ -18,17 +36,14 @@ export const Home = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>test</td>
-            <td>test</td>
-            <td>
-              <Button variant="warning">Edit</Button>
-              <Button variant="danger">Delete</Button>
-            </td>
-          </tr>
+          {devices?.length && devices.map((data: FetchDeviceResponse) =>
+            <DeviceRow key={data.id} {...data} />
+          )}
         </tbody>
       </Table>
-      <Button variant="primary">Add new device</Button>
+      <Link className="btn btn-primary" to={AppRoute.createDevice}>
+        Add new device
+      </Link>
     </>
   );
 };

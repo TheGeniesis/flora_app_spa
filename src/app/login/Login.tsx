@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
-import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import { useAuthState } from 'hooks/useAuthState/useAuthState';
@@ -31,37 +30,35 @@ export const Login = ({ onSubmit }: LoginProps) => {
     [onSubmit],
   );
 
-  const schema = yup.object().shape({
-    username: yup.string().required(),
-    password: yup.string().required(),
-  });
-
   return (
-    <Formik validationSchema={schema} onSubmit={handleSubmitCallback} initialValues={{ username: '', password: '' }}>
-      {({ touched, errors }) => (
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              name="username"
-              type="text"
-              placeholder="Enter username"
-              isValid={touched.username && !errors.username}
-              ref={register({ required: true })}
-            />
-            <Form.Control.Feedback type="invalid" tooltip>
-              {errors.username}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      )}
-    </Formik>
+    <>
+      <Form onSubmit={handleSubmit(handleSubmitCallback)}>
+        <Form.Group className="mb-3" controlId="username">
+          <Form.Label>
+            Username
+          </Form.Label>
+          <Form.Control
+            name="username"
+            placeholder="Enter username"
+            // isValid={!errors.username}
+            ref={register({ required: true })}
+          />
+          {errors.username && <span>{errors.username.message}</span>}
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            name="password"
+            type="password"
+            placeholder="Enter password"
+            ref={register({ required: true })}
+          />
+          {errors.username && <span>{errors.username.message}</span>}
+        </Form.Group>
+        <Button variant="primary" type="submit" disabled={isAuthorizing}>
+          Submit
+        </Button>
+      </Form>
+    </>
   );
 };
