@@ -1,36 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import * as Sentry from '@sentry/browser';
+import * as React from "react"
+import ReactDOM from "react-dom"
+import {transitions, positions, Provider as AlertProvider } from 'react-alert'
+import {Root} from "./Main/Root";
+import {AlertTemplate} from "./Shared/Components/Alert/AlertTemplate";
 
-import 'assets/styles/main.scss';
-import { AppProviders } from 'providers/AppProviders';
-import { mockServer } from 'api/mocks/mock-server';
-
-import { App } from './app/App';
-import * as serviceWorker from './serviceWorker';
-
-if (+(process.env.REACT_APP_CI || 0) === 1 || process.env.NODE_ENV !== 'production') {
-  mockServer();
-}
-
-if (process.env.NODE_ENV === 'development') {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const whyDidYouRender = require('@welldone-software/why-did-you-render');
-  whyDidYouRender(React);
-}
-
-if (process.env.REACT_APP_SENTRY_DSN) {
-  Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
-}
+const options = {
+    position: positions.TOP_CENTER,
+    timeout: 3000,
+    offset: '0',
+    transition: transitions.SCALE
+};
 
 ReactDOM.render(
-  <AppProviders>
-    <App />
-  </AppProviders>,
-  document.getElementById('root'),
+  <AlertProvider template={AlertTemplate} {...options}>
+    <Root />
+  </AlertProvider>,
+  document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();

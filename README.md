@@ -1,20 +1,17 @@
-# Flora app spa
+# Music crud
+Application to manage songs, artists and providers
 
-## Quick Start
+## Requirements
+- Yarn
 
-To start the development, run:
+## Installation
+- Run `yarn install`
 
-```sh
-npm install
-cp .env.dist .env
-npm run lint:fix
-npm run test
-```
+## Technologies
+- JavaScript
+- TypeScript
+- React
 
-## Environment
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Setup
+- Run `yarn start`
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
