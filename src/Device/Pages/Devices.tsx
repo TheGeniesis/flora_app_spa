@@ -26,6 +26,7 @@ export function Devices() {
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Actions</th>
                     </tr>

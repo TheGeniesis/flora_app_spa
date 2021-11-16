@@ -33,6 +33,7 @@ export function DeviceListElem(props: IComponentProps) {
 
     return device ? (
         <tr>
+            <td>{device.id}</td>
             <td>{device.name}</td>
             <td>
                 <NavLink to={`/device/edit/${device.id}`} className="btn btn-primary">Edit</NavLink>
