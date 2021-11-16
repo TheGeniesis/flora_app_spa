@@ -41,4 +41,3 @@ export function DeviceListElem(props: IComponentProps) {
         </tr>
     ) : null;
 }
-https://github.com/TheGeniesis/flora_app_spa
