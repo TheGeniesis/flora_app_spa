@@ -4,4 +4,7 @@ export const RoutingList = {
     PUT_DEVICE: '/devices/{id}',
     POST_DEVICE: '/devices',
     DELETE_DEVICE: '/devices/{id}',
+   
+    GET_MEASUREMENT: '/devices/{id}/measurements',
+    GET_MEASUREMENTS: '/measurements',
 };
