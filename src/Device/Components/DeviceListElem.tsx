@@ -37,6 +37,7 @@ export function DeviceListElem(props: IComponentProps) {
             <td>{device.name}</td>
             <td>
                 <NavLink to={`/device/${device.id}/measurement`} className="btn btn-secondary">Measurement</NavLink>
+                <NavLink to={`/device/${device.id}/sensor/edit/`} className="btn btn-info">Sensor</NavLink>
                 <NavLink to={`/device/edit/${device.id}`} className="btn btn-primary">Edit</NavLink>
                 <button type="button" onClick={deleteDevice} className="btn btn-danger">Delete</button>
             </td>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { DeviceEditForm, IDevice } from "../Components/DeviceEditForm";
+import { SensorEditForm, ISensor } from "../Components/SensorEditForm";
 import { RoutingList } from "../../Shared/Router/RoutingList";
 import { generateRoute, Router } from "../../Shared/Router/Router";
 import { FormActionEnum } from "../../Shared/Enum/FormActionEnum";
@@ -11,25 +11,25 @@ interface RouteParams {
 
 export function SensorEdit() {
     const params = useParams<RouteParams>();
-    const [device, setDevice] = useState<IDevice>();
+    const [sensor, setSensor] = useState<ISensor>();
 
     useEffect(() => {
-        const getDevice = function () {
-            Router.fetch(RoutingList.GET_DEVICE, {}, { id: params.id })
+        const getSensor = function () {
+            Router.fetch(RoutingList.GET_SENSOR, {}, { device_id: params.id })
                 .then((res: any) => {
-                    setDevice(res)
+                    setSensor(res ? res[0] : [])
                 });
         };
-        getDevice();
+        getSensor();
     }, []);
-    
-    const deviceEditFormProps = {
-        routing: generateRoute(RoutingList.PUT_DEVICE, { id: params.id }),
-        redirect: '/sensor/edit/',
+
+    const sensorEditFormProps = {
+        routing: generateRoute(RoutingList.PUT_SENSOR, { device_id: params.id, id: sensor?.id }),
+        // redirect: '/sensor/edit/',
         action: FormActionEnum.edit,
         headerPrefix: "Edit",
-        device: device
+        sensor: sensor
     };
 
-    return device ? <DeviceEditForm {...deviceEditFormProps} /> : <div></div>;
+    return sensor ? <SensorEditForm {...sensorEditFormProps} /> : <div></div>;
 }

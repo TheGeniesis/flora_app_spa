@@ -7,4 +7,7 @@ export const RoutingList = {
    
     GET_MEASUREMENT: '/devices/{id}/measurements',
     GET_MEASUREMENTS: '/measurements',
+
+    GET_SENSOR: '/devices/{device_id}/sensors',
+    PUT_SENSOR: '/devices/{device_id}/sensors/{id}',
 };
