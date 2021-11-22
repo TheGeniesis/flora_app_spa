@@ -53,7 +53,7 @@ export function SensorEditForm(props: SensorEditFormProps) {
                         errors={formErrors.waterAmount} />
                 </div>
 
-                <Input type="time" name="waterTime" label="Watering time" value={formData.waterTime}
+                <Input type="time" name="waterTime" label="Watering time" value={formData.waterTime.split(".")[0]}
                     errors={formErrors.waterTime} />
 
                 <Input type="number" name="humility" label="Minimal humility" value={formData.humility}
