@@ -1,0 +1,63 @@
+version: 3
+
+vars:
+  K8S_NAME: kind
+  HELM_VERSION: v3.7.1
+  KUBERNETES_VERSION: v1.22.2
+  KIND_VERSION: v0.11.1
+  HELMFILE_VERSION: v0.142.0
+  HELMFILE_BASE_COMMAND: ./helmfile --helm-binary=./helm
+
+tasks:
+  default:
+    cmds:
+      - task -l
+
+  kubeconfig:
+    desc: Prepare envrc file with kubeconfig path.
+    cmds:
+      - ./kind get kubeconfig --name={{.K8S_NAME}} > kind_kubeconfig
+      - echo "export KUBECONFIG={{.KUBE_KIND_CONF_DIR}}/kind_kubeconfig" > .envrc
+      - direnv allow
+    vars:
+      KUBE_KIND_CONF_DIR:
+        sh: pwd
+
+  install:
+    desc: Install tools
+    cmds:
+    - task: install:kind
+    - task: install:k8s
+    - task: install:helm
+
+  deploy:k8s:
+    desc: deploy prometheus operator
+    cmds:
+      - "{{.HELMFILE_BASE_COMMAND}} apply"
+
+  install:helm:
+    desc: install helm 3
+    cmds:
+      - wget -qO-  https://get.helm.sh/helm-{{.HELM_VERSION}}-{{OS}}-{{ARCH}}.tar.gz | tar xvz -C ./
+      - mv {{OS}}-{{ARCH}}/helm ./
+      - chmod 755 helm
+      - rm -rf {{OS}}-{{ARCH}}
+      - curl -Lo ./helmfile https://github.com/roboll/helmfile/releases/download/{{.HELMFILE_VERSION}}/helmfile_{{OS}}_{{ARCH}}
+      - chmod +x ./helmfile
+
+  install:k8s:
+    desc: Install kubectl
+    cmds:
+      - curl -LO https://storage.googleapis.com/kubernetes-release/release/{{.KUBERNETES_VERSION}}/bin/{{OS}}/{{ARCH}}/kubectl
+      - chmod +x ./kubectl
+
+  install:kind:
+    desc: Install KIND
+    cmds:
+      - curl -Lo ./kind "https://github.com/kubernetes-sigs/kind/releases/download/{{.KIND_VERSION}}/kind-{{OS}}-{{ARCH}}"
+      - chmod +x ./kind
+
+  load-image-kind:
+    desc: Put image in kind
+    cmds:
+      - ./kind load docker-image flora_app/spa:latest

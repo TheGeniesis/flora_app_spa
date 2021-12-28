@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.appName }}-spa-configmap
+data:
+  .env: |
+    REACT_APP_RUNTIME_API_URL=http://localhost:3002

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName }}-spa
+  labels:
+    app: {{ .Values.appName }}-spa
+spec:
+  ports:
+    - targetPort: {{ .Values.spa.port }}
+      name: {{ .Values.appName }}-spa
+      port: 80
+  selector:
+    app: {{ .Values.appName }}-spa

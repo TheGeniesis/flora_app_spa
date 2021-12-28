@@ -22,7 +22,7 @@ const mergeHeaders = (init: RequestInit) => {
 };
 
 const prepareUrl = (url: string) => {
-    return `${getEnvVar('host')}/api${url}`;
+    return `${getEnvVar('API_URL')}/api${url}`;
 };
 
 export function generateRoute(url: string, query ?: {}) {
