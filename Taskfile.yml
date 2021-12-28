@@ -1,0 +1,11 @@
+version: 3
+
+tasks:
+  default:
+    cmds:
+      - task -l
+
+  build:
+    desc: Build images before deploy on k8s
+    cmds:
+      - docker build --tag flora_app/spa:latest -f ./devOps/docker/nginx/Dockerfile .

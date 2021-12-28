@@ -1,4 +1,4 @@
-import App from "../../Config/App";
+import {getEnvVar} from "../../Config/App";
 import {ConvertObjectToJson} from "../Converter/ObjectToJsonConverter";
 import {Sprintf} from "../Formatter/Sprintf";
 
@@ -22,7 +22,7 @@ const mergeHeaders = (init: RequestInit) => {
 };
 
 const prepareUrl = (url: string) => {
-    return `${App.host}/api${url}`;
+    return `${getEnvVar('API_URL')}/api${url}`;
 };
 
 export function generateRoute(url: string, query ?: {}) {

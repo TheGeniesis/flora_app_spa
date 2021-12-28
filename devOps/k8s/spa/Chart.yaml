@@ -1,0 +1,3 @@
+apiVersion: v2
+name: spa
+version: v0.1.0

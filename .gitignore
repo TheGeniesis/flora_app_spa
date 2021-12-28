@@ -24,3 +24,13 @@ yarn-error.log*
 
 
 .idea
+
+
+env-config.js
+
+kind
+kind_kubeconfig
+kubectl
+helm
+helmfile
+.envrc

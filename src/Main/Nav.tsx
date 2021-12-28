@@ -9,7 +9,6 @@ export const Nav = () => {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item"><NavLink to="/" className="nav-link">Start</NavLink></li>
                         <li className="nav-item"><NavLink to="/devices" className="nav-link">Devices</NavLink></li>
-                        <li className="nav-item"><NavLink to="/measurements" className="nav-link">Measurements</NavLink></li>
                     </ul>
                 </nav>
             </div>

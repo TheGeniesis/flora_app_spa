@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}-spa
+  labels:
+    app: {{ .Values.appName }}-spa
+
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}-spa
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      labels:
+        app: {{ .Values.appName }}-spa
+    spec:
+      containers:
+      - name: {{ .Values.appName }}-spa
+        image: flora_app/spa:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: {{ .Values.spa.port }}
+        resources: {}
+        volumeMounts:
+        - name: config-volume
+          mountPath: /var/www/project/env
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ .Values.appName }}-spa-configmap

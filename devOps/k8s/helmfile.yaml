@@ -1,0 +1,7 @@
+releases:
+  - name: spa
+    chart: spa
+    version: v0.1.0
+    namespace: default
+    values:
+      - spa/values.yaml
