@@ -42,16 +42,12 @@ export function SensorEditForm(props: SensorEditFormProps) {
     });
 
     return (
-        <div className="container">
-            <h2>{props.headerPrefix} sensor</h2>
+        <div className="container rounded">
+            <h2 className="pt-3">{props.headerPrefix} sensor</h2>
             <Form action={props.action} redirectPath={props.redirect} routing={props.routing} errors={errors}>
-                <Input type="checkbox" name="waterAutoMode" label="Should run in automode?" value={formData.waterAutoMode ? 1 : 0}
-                    errors={formErrors.waterAutoMode} />
 
-                <div className="form-group">
-                    <Input type="number" name="waterAmount" label="Water amount" value={formData.waterAmount}
-                        errors={formErrors.waterAmount} />
-                </div>
+                <Input type="number" name="waterAmount" label="Water amount" value={formData.waterAmount}
+                    errors={formErrors.waterAmount} />
 
                 <Input type="time" name="waterTime" label="Watering time" value={formData.waterTime.split(".")[0]}
                     errors={formErrors.waterTime} />
@@ -59,8 +55,13 @@ export function SensorEditForm(props: SensorEditFormProps) {
                 <Input type="number" name="humility" label="Minimal humility" value={formData.humility}
                     errors={formErrors.humility} />
 
-                <button className="btn btn-primary" type="submit">Submit</button>
-                <NavLink to="/devices" className="btn btn-info">Cancel</NavLink>
+                <Input type="checkbox" name="waterAutoMode" label="Should run in automode?" value={formData.waterAutoMode ? 1 : 0}
+                    errors={formErrors.waterAutoMode} />
+
+                <div className="form-row">
+                    <button className="btn btn-primary" type="submit">Submit</button>
+                    <NavLink to="/devices" className="btn btn-danger">Cancel</NavLink>
+                </div>
             </Form>
         </div>
     );

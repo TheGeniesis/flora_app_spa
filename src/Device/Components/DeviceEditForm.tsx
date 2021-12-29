@@ -33,13 +33,13 @@ export function DeviceEditForm(props: DeviceEditFormProps) {
     });
 
     return (
-        <div className="container">
-            <h2>{props.headerPrefix} device</h2>
+        <div className="container rounded">
+            <h2 className="pt-3">{props.headerPrefix} device</h2>
             <Form action={props.action} redirectPath={props.redirect} routing={props.routing} errors={errors}>
                 <Input name="name" label="Name" value={formData.name}
                     errors={formErrors.name} />
                 <button className="btn btn-primary" type="submit">Submit</button>
-                <NavLink to="/devices" className="btn btn-info">Cancel</NavLink>
+                <NavLink to="/devices" className="btn btn-danger">Cancel</NavLink>
             </Form>
         </div>
     );

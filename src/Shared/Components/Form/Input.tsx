@@ -52,7 +52,7 @@ export function Input(props: IComponentProps) {
         );
     }
     return (
-        <div className="form-row">
+        <div className="form-row col-lg-5 col-md-10 col-sm-12">
             <label htmlFor={formData.name}>{formData.label}</label>
             <input id={formData.name} name={ConvertToUnderscore(formData.name)} value={formData.value}
                 type={formData.type ? formData.type : 'text'}

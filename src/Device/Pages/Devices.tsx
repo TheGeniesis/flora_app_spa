@@ -21,8 +21,8 @@ export function Devices() {
     }, []);
 
     return (
-        <div className="container">
-            <h2>Devices list <NavLink to={'/device/new'} className="btn btn-success">Add</NavLink></h2>
+        <div className="container rounded">
+            <h2 className="pt-3">Devices list <NavLink to={'/device/new'} className="btn btn-success">Add</NavLink></h2>
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
