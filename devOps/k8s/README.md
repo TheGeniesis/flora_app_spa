@@ -1,25 +1,16 @@
-# A KIND with playground
-
-## Quick Information
-
-- Simple stack with monitoring/logging
+# An SPA for flora application
 
 ## Requirements
 
-- [Docker](https://www.docker.com/)
-- [Docker-compose](https://docs.docker.com/compose/)
 - [Task](https://taskfile.dev)
 - [envrc](https://direnv.net/)
 
 ## Setup
 
-- task install
-- task rebuild
-> If it fails run `task deploy:k8s`
-
+- Run `cd ../../ && task build` in main directory
+- Run `task install` to download binaries
+- Run `task rebuild` to connect with cluster and do the deploy
 
 ### Urls
 
-http://rabbitmq.flora.local.com/
-http://app-api.flora.local.com/
-http://grafana.flora.local.com/
+http://app.flora.local.com/

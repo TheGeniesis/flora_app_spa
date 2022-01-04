@@ -61,3 +61,10 @@ tasks:
     desc: Put image in kind
     cmds:
       - ./kind load docker-image flora_app/spa:latest
+
+  rebuild:
+    desc: Full deploy
+    cmds:
+      - task: kubeconfig
+      - task: load-image-kind
+      - task: deploy:k8s
