@@ -4,4 +4,4 @@ metadata:
   name: {{ .Values.appName }}-spa-configmap
 data:
   .env: |
-    REACT_APP_RUNTIME_API_URL=http://localhost:3002
+    REACT_APP_RUNTIME_API_URL=http://app-api.flora.local.com
