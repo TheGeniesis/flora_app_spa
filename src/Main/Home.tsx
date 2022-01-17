@@ -9,8 +9,8 @@ export function Home() {
             <article>
                 <div className="row col-md-12">
                     <div className="col-lg-6 col-sm-12  mb-3">
-                        <div className="mb-3">
-                            <img alt="Screen from Grafana" src="img/cable.jpg" />
+                        <div className="mb-3 grafana-img">
+                            <img alt="Screen from Grafana" src="img/grafana.png" />
                         </div>
                         <div>
                             <a className="btn btn-info" href={getEnvVar('GRAFANA_URL')} target="_blank">Grafana</a>
@@ -18,7 +18,7 @@ export function Home() {
                     </div>
                     <div className="col-lg-6 col-sm-12">
                         <div className="mb-3">
-                            <img alt="Arduino device" src="img/cable.jpg" />
+                            <img className="wemos-img" alt="Arduino device" src="img/wemos.jpg" />
                         </div>
                         <div>
                             <NavLink to="/devices" className="btn btn-info">Devices</NavLink>
