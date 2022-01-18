@@ -25,7 +25,11 @@ export function Input(props: IComponentProps) {
     const [formData, setFormData] = useState(props);
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const target = event.currentTarget;
-        const value = parseValue(target.value);
+        let value = parseValue(target.value);
+
+        if (formData.type === 'checkbox') {
+            value = formData.value !== 1 ? 1 : 0;
+        }
 
         setFormData({
             ...formData,
@@ -43,9 +47,10 @@ export function Input(props: IComponentProps) {
                 {formData.value !== 1 ? <input type='hidden' value='0' name={ConvertToUnderscore(formData.name)} /> : ""}
                 <input id={formData.name} name={ConvertToUnderscore(formData.name)}
                     value={formData.value}
-                    defaultChecked={formData.value === 1 ? true : false}
+                    checked={formData.value === 1 ? true : false}
                     type={formData.type ? formData.type : 'text'}
-                    className={`${formData.type === "checkbox" ? "form-check-input" : "form-control"}  ${Array.isArray(props.errors) && props.errors.length ? 'is-invalid' : ''}`} onChange={handleInputChange} />
+                    className={`${formData.type === "checkbox" ? "form-check-input" : "form-control"}  ${Array.isArray(props.errors) && props.errors.length ? 'is-invalid' : ''}`}
+                    onChange={handleInputChange} />
                 <label className={`${formData.type === "checkbox" ? "form-check-label" : ""}`} htmlFor={formData.name}>{formData.label}</label>
                 <FieldError errors={props.errors} />
             </div>
