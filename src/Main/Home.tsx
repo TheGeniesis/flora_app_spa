@@ -9,7 +9,7 @@ export function Home() {
             <article>
                 <div className="row col-md-12">
                     <div className="col-lg-6 col-sm-12  mb-3">
-                        <div className="mb-3 grafana-img">
+                        <div className="grafana-img">
                             <img alt="Screen from Grafana" src="img/grafana.png" />
                         </div>
                         <div>
@@ -17,7 +17,7 @@ export function Home() {
                         </div>
                     </div>
                     <div className="col-lg-6 col-sm-12">
-                        <div className="mb-3">
+                        <div>
                             <img className="wemos-img" alt="Arduino device" src="img/wemos.jpg" />
                         </div>
                         <div>

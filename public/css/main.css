@@ -40,6 +40,7 @@ img {
  
 .grafana-img img {
   width: 65%;
+  height: 300px;
 }
  
 .wemos-img {
